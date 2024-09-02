@@ -1,0 +1,41 @@
+<mat-sidenav-container *ngIf="!isLoginRoute()" class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" class="sidenav">
+    <mat-list-item role="listitem">Maestros</mat-list-item>
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/users']">
+          <mat-icon>home</mat-icon>
+          <span>Users</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/category']">
+          <mat-icon>books</mat-icon>
+          <span>Category</span>
+        </button>
+      </mat-list-item>
+      <!-- Otros ítems del menú -->
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My Book</span>
+      <span class="spacer"></span>
+      <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-toolbar>
+    
+    <!-- Aquí se cargarán las diferentes vistas -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div *ngIf="isLoginRoute()">
+  <router-outlet></router-outlet>
+</div>
